@@ -3,6 +3,7 @@ This is a sketch of a completely open hardware kit for getting started with elec
 | # | Module | Part | Price | Source files | CircuitPython | MicroBlocks |
 |---|---|---|---|---|---|---|
 | B1 | Board | [ESP32-WROOM-32E development board](https://github.com/samuk/ESP32-WROOM-32E-development-board) | $10.00 | [Repo](https://github.com/samuk/ESP32-WROOM-32E-development-board) | [CircuitPython](https://learn.adafruit.com/circuitpython-essentials) | [Get started](https://microblocks.fun/get-started) |
+| B2 | Shield | [Grove Base Shield V2.0 for Arduino](https://wiki.seeedstudio.com/Base_Shield_V2/) | $3.50| [Seeed wiki](https://wiki.seeedstudio.com/Base_Shield_V2/) (Eagle files linked from the wiki) | | |
 | 3 | LED button | [Crowtail Button 2.0](https://www.elecrow.com/crowtailbutton-p-122.html) | from $1.00 | [Crowtail wiki](https://www.elecrow.com/wiki/crowtail--button.html) | [Digital In & Out](https://learn.adafruit.com/circuitpython-essentials/circuitpython-digital-in-out) | [Shutter controlled with buttons](https://learn.microblocks.fun/en/activities/citilab-course-10-en) |
 | 4 | DHT11 | [Crowtail Temp & Humidity 2.0](https://www.elecrow.com/crowtail-temperature-humidity-sensor-p-1229.html) | $2.10 | [Crowtail wiki](https://www.elecrow.com/wiki/crowtail--temperature26-humidity-sensor.html) | [Adafruit DHT guide](https://learn.adafruit.com/dht), [adafruit_dht docs](https://learn.adafruit.com/dht/dht-circuitpython-code) | [Basic sensor: light level and temperature](https://learn.microblocks.fun/en/activities/citilab-course-02-en) |
 | 5 | Relay | [Grove Relay](https://wiki.seeedstudio.com/Grove-Relay/) | $2.99 | [Seeed wiki](https://wiki.seeedstudio.com/Grove-Relay/) | [Digital In & Out](https://learn.adafruit.com/circuitpython-essentials/circuitpython-digital-in-out) | [Libraries](https://wiki.microblocks.fun/libraries) |
@@ -11,7 +12,7 @@ This is a sketch of a completely open hardware kit for getting started with elec
 | 9 | Potentiometer | [Crowtail Rotary Angle Sensor 2.0](https://www.elecrow.com/crowtail-rotary-angle-sensor-p-1514.html) | $1.30 | [Crowtail wiki](https://www.elecrow.com/wiki/crowtail--rotary-angle-sensor.html) | [Analog In](https://learn.adafruit.com/circuitpython-essentials/circuitpython-analog-in) | [Libraries](https://wiki.microblocks.fun/libraries) |
 | 10 | NeoPixel | [Grove RGB 10x LED Stick ](https://wiki.seeedstudio.com/Grove-RGB_LED_Stick-10-WS2813_Mini/) | $5.40 | [Seeed wiki](https://wiki.seeedstudio.com/Grove-RGB_LED_Stick-10-WS2813_Mini/) | [CircuitPython NeoPixel](https://learn.adafruit.com/circuitpython-essentials/circuitpython-neopixel) | [Play with Neopixels](https://learn.microblocks.fun/en/activities/citilab-course-06-en) |
 | 11 | OLED | [Grove OLED Display 0.96 SSD1315](https://wiki.seeedstudio.com/Grove-OLED-Display-0.96-SSD1315/) | $6.00 | [Seeed wiki](https://wiki.seeedstudio.com/Grove-OLED-Display-0.96-SSD1315/) | [adafruit_displayio_ssd1306 docs](https://docs.circuitpython.org/projects/displayio_ssd1306/en/latest/) | [OLED Graphics library](https://wiki.microblocks.fun/extension_libraries/oled) |
-| | **Total** | | **$31.89** | | | |
+| | **Total** | | **$35 US** | | | |
 
 
 **Part 2 starter robot**
