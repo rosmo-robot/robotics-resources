@@ -9,7 +9,9 @@ This is a sketch of a completely open hardware kit for getting started with elec
 | 7 | Buzzer | [Crowtail Buzzer 2.0](https://www.elecrow.com/crowtail-buzzer-p-1223.html) (piezo; out of stock when fetched) | $1.20 | [Crowtail wiki](https://elecrow.com/wiki/crowtail--buzzer.html) | [CircuitPython PWM](https://learn.adafruit.com/circuitpython-essentials/circuitpython-pwm) (variable frequency section) | Yes, Tone library |
 | 8 | LDR | [Crowtail Light Sensor 2.0](https://www.elecrow.com/crowtail-light-sensor-p-1244.html) (GL5516 LDR with LMV358 buffer) | $1.90 | [Crowtail wiki](https://www.elecrow.com/wiki/crowtail--light-sensor.html) | [Analog In](https://learn.adafruit.com/circuitpython-essentials/circuitpython-analog-in) | Yes, read analog pin |
 | 9 | Potentiometer | [Crowtail Rotary Angle Sensor 2.0](https://www.elecrow.com/crowtail-rotary-angle-sensor-p-1514.html) | $1.30 | [Crowtail wiki](https://www.elecrow.com/wiki/crowtail--rotary-angle-sensor.html) | [Analog In](https://learn.adafruit.com/circuitpython-essentials/circuitpython-analog-in) | Yes, read analog pin |
-| | **Total** | | **$20.49** | | | |
+| 10 | NeoPixel | [Grove RGB LED Stick (10x WS2813 Mini)](https://www.seeedstudio.com/Grove-RGB-LED-Stick-10-WS2813-Mini.html) | $5.40 | [Seeed wiki](https://wiki.seeedstudio.com/Grove-RGB_LED_Stick-10-WS2813_Mini/) (pinout, datasheet) | [CircuitPython NeoPixel](https://learn.adafruit.com/circuitpython-essentials/circuitpython-neopixel) | Yes, NeoPixel library (untested with WS2813) |
+| 11 | OLED | [Grove OLED Display 0.96" (SSD1315)](https://www.seeedstudio.com/Grove-OLED-Display-0-96-SSD1315-p-4294.html) | $6.00 | [Datasheet, schematic and wiki via Switch Science listing](https://www.switch-science.com/collections/seeed/products/7002) | [adafruit_displayio_ssd1306 docs](https://docs.circuitpython.org/projects/displayio_ssd1306/en/latest/) (SSD1306 driver, used with this module by others) | [OLED Graphics library](https://wiki.microblocks.fun/extension_libraries/oled), not confirmed against SSD1315 |
+| | **Total** | | **$31.89** | | | |
 
 
 **Part 2 starter robot**
