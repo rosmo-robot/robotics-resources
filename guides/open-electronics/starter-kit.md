@@ -1,3 +1,5 @@
+This is a sketch of a completely open hardware kit for getting started with elecronics
+
 | # | Module | Part | Price | Source files | CircuitPython (chip / projects) | MicroBlocks |
 |---|---|---|---|---|---|---|
 | B1 | Board | [ESP32-WROOM-32E development board](https://github.com/samuk/ESP32-WROOM-32E-development-board) | $10.00 | [Repo](https://github.com/samuk/ESP32-WROOM-32E-development-board) | [CircuitPython NeoPixel](https://learn.adafruit.com/circuitpython-essentials/circuitpython-neopixel) | Yes, NeoPixel library |
