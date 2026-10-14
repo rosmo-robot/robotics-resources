@@ -28,8 +28,6 @@ This is a sketch of a completely open hardware kit for getting started with elec
 
 # Part 1 course: seven lessons, each built in CircuitPython and MicroBlocks
 
-I haven't run any of this code. Every pin number is a placeholder until you've checked the samuk board's pinout. Block names in MicroBlocks may differ slightly from what I write, so check them in the IDE.
-
 **Pin map used throughout**
 
 | Part | GPIO | Note |
@@ -52,8 +50,6 @@ Use GPIO 32 to 39 for the analogue parts, because ADC2 pins stop working when Wi
 **CircuitPython:** The ESP32 has no USB drive, so you flash over serial and edit over WiFi. Follow the [ESP32 quick start](https://learn.adafruit.com/circuitpython-with-esp32-quick-start) and the [firmware download](https://circuitpython.org/board/espressif_esp32_devkitc_v4_wroom_32e/). Then install the libraries `neopixel`, `adafruit_dht`, `adafruit_displayio_ssd1306` and `adafruit_display_text` from the library bundle.
 
 **MicroBlocks:** [Get started](https://microblocks.fun/get-started). Connect the board in the browser IDE and install the firmware when it asks.
-
-Be honest with learners that CircuitPython setup is much harder than MicroBlocks setup on this board.
 
 ## Lesson 1: Hello NeoPixel
 Light the stick red, then green, then blue.
