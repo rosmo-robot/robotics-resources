@@ -19,20 +19,33 @@ Part 1 builds each lesson in MicroBlocks. Part 2 repeats the same seven lessons 
 
 ## Pin map (both parts)
 
-| Part | GPIO | Note |
-|---|---|---|
-| Crowtail RGB-LED (4 pixels) | 13 | data pin |
-| Crowtail Button 2.0 | 4 | digital input |
-| Crowtail Solid-State Relay 2.0 | 5 | digital output |
-| Crowtail Light Sensor 2.0 | 34 | analogue input |
-| Crowtail Rotary Angle Sensor 2.0 | 35 | analogue input |
-| Crowtail Buzzer 2.0 | 18 | PWM |
-| Crowtail Temp & Humidity 2.0 (DHT11) | 15 | digital |
-| TFT screen | n/a | on the board |
+With the camera removed, its GPIOs are free. This map follows the [Grove-UEXT-3.2screen-breakout](https://github.com/rosmo-robot/Grove-UEXT-3.2screen-breakout) shield on the 15-pin J1 header. I checked its header-to-GPIO map against the Matouch 3.2 v1.1 schematic.
 
-Use GPIO 32 to 39 for the analogue parts, because ADC2 pins stop working when WiFi is on. In CircuitPython the pins are written `board.IO13` and so on. In MicroBlocks you use the plain GPIO number.
+| Part | GPIO | Shield port | J1 pin | Note |
+|---|---|---|---|---|
+| Crowtail RGB-LED (4 pixels) | 32 | J4 STICK | 6 | data pin |
+| Crowtail Button 2.0 | 25 | J9 BUTTON | 8 | digital input |
+| Crowtail Solid-State Relay 2.0 | 23 | J8 RELAY | 9 | digital output |
+| Crowtail Light Sensor 2.0 | 36 | J2 LIGHT | 3 | analogue input (input-only pin) |
+| Crowtail Rotary Angle Sensor 2.0 | 39 | J3 POT | 4 | analogue input (input-only pin) |
+| Crowtail Buzzer 2.0 | 19 | J7 BUZZER | 11 | PWM |
+| Crowtail Temp & Humidity 2.0 (DHT11) | 18 | J6 DHT11 | 12 | digital |
 
-**To check before printing:** this map has not been checked against the Matouch 3.2 schematic. The screen, touch, SD card and camera already use GPIOs on this board, so some of these will need to change.
+Each port carries one signal, 3.3V and GND. No port has 5V.
+
+**Used by the board, do not wire to:**
+
+| GPIO | Used for |
+|---|---|
+| 12, 13, 14 | SPI bus shared by the TFT and the SD card (MISO, MOSI, SCK) |
+| 15 | TFT chip select |
+| 33 | TFT data/command (LCD_RS) |
+| 4 | SD card chip select |
+| 26, 27 | I2C (SDA, SCL) for the touch controller, also on J1 |
+| 0 | touch interrupt, and a boot strapping pin |
+| 1, 3 | USB serial (TXD, RXD) |
+
+The TFT reset is tied to the board reset, so it has no GPIO. The backlight is always on. Use GPIO 32 to 39 for analogue parts, because ADC2 pins stop working when WiFi is on. In CircuitPython the pins are written `board.IO32` and so on. In MicroBlocks you use the plain GPIO number.
 
 **Safety:** use the relay with low-voltage loads only. No mains in the lessons.
 
@@ -46,38 +59,38 @@ Use GPIO 32 to 39 for the analogue parts, because ADC2 pins stop working when Wi
 ## Lesson 1: Hello NeoPixel
 Light the stick red, then green, then blue.
 
-[Play with Neopixels](https://learn.microblocks.fun/en/activities/citilab-course-06-en): load the NeoPixel library. Set all pixels to red, wait 1000 ms, then green, then blue.
+[Play with Neopixels](https://learn.microblocks.fun/en/activities/citilab-course-06-en): load the NeoPixel library. Set the NeoPixel pin to 32 with 4 pixels. Set all pixels to red, wait 1000 ms, then green, then blue.
 
-If the pixels flicker, the 3.3V data signal may be too weak for the LEDs.
+If the pixels look dim or the colours are wrong, remember the shield supplies 3.3V, which is below the 3.5V minimum supply in the WS2812B datasheet.
 
 ## Lesson 2: Button changes the light
 Hold the button and the stick turns green.
 
-[Shutter controlled with buttons](https://learn.microblocks.fun/en/activities/citilab-course-10-en): `forever`, `if (digital read pin 4)` set all pixels green, else off.
+[Shutter controlled with buttons](https://learn.microblocks.fun/en/activities/citilab-course-10-en): `forever`, `if (digital read pin 25)` set all pixels green, else off.
 
 ## Lesson 3: Press to toggle the relay
 Each press flips the relay on or off. This lesson introduces remembering the previous state.
 
-[Libraries](https://wiki.microblocks.fun/libraries): make a variable `was`. `forever`: if the button is pressed and `was` is false, set pin 5 to `not (digital read pin 5)`. Then set `was` to the button state.
+[Libraries](https://wiki.microblocks.fun/libraries): make a variable `was`. `forever`: if the button (pin 25) is pressed and `was` is false, set pin 23 to `not (digital read pin 23)`. Then set `was` to the button state.
 
 ## Lesson 4: Light meter
 The brighter the room, the more pixels light up.
 
-[Shutter controlled with light](https://learn.microblocks.fun/en/activities/citilab-course-11-en): set `n` to `((read analog pin 34) * 4) / 1023` (MicroBlocks reads 0 to 1023). Clear the pixels, then `for i = 1 to n` set pixel `i`.
+[Shutter controlled with light](https://learn.microblocks.fun/en/activities/citilab-course-11-en): set `n` to `((read analog pin 36) * 4) / 1023` (MicroBlocks reads 0 to 1023). Clear the pixels, then `for i = 1 to n` set pixel `i`.
 
 Show the raw reading first. The Crowtail module may read higher or lower in bright light.
 
 ## Lesson 5: Dial a tone
 The potentiometer sets the buzzer pitch.
 
-[Theremin](https://learn.microblocks.fun/en/activities/citilab-course-09-en): load the Tone library. `forever`: play a tone at `200 + (read analog pin 35)` Hz for 20 ms.
+[Theremin](https://learn.microblocks.fun/en/activities/citilab-course-09-en): load the Tone library. `forever`: play a tone on pin 19 at `200 + (read analog pin 39)` Hz for 20 ms.
 
 This only works if the Crowtail buzzer is passive.
 
 ## Lesson 6: Weather display
 Read temperature and humidity and show them on the screen.
 
-[Basic sensor: light level and temperature](https://learn.microblocks.fun/en/activities/citilab-course-02-en): load the DHT11 library and the TFT library for the board's display. `forever`: clear the screen, write the temperature and humidity, wait 2000 ms.
+[Basic sensor: light level and temperature](https://learn.microblocks.fun/en/activities/citilab-course-02-en): load the DHT11 library (sensor on pin 18) and the TFT library for the board's display. `forever`: clear the screen, write the temperature and humidity, wait 2000 ms.
 
 ## Lesson 7: Capstone, a thermostat
 Combine lessons 1 to 6. The pot sets the target temperature, the screen shows both values, and the relay switches a fan or heater. The stick is green when the temperature is below target and red when above. The buzzer sounds 5 degrees over.
@@ -99,7 +112,7 @@ Light the stick red, then green, then blue. ([NeoPixel](https://learn.adafruit.c
 ```python
 import board, neopixel, time
 
-px = neopixel.NeoPixel(board.IO13, 4, brightness=0.2)
+px = neopixel.NeoPixel(board.IO32, 4, brightness=0.2)
 for colour in [(255, 0, 0), (0, 255, 0), (0, 0, 255)]:
     px.fill(colour)
     time.sleep(1)
@@ -111,8 +124,8 @@ Hold the button and the stick turns green. ([Digital In & Out](https://learn.ada
 ```python
 import board, neopixel, digitalio
 
-px = neopixel.NeoPixel(board.IO13, 4, brightness=0.2)
-btn = digitalio.DigitalInOut(board.IO4)
+px = neopixel.NeoPixel(board.IO32, 4, brightness=0.2)
+btn = digitalio.DigitalInOut(board.IO25)
 btn.switch_to_input(pull=digitalio.Pull.DOWN)  # use UP if it reads inverted
 
 while True:
@@ -125,9 +138,9 @@ Each press flips the relay on or off. ([Digital In & Out](https://learn.adafruit
 ```python
 import board, digitalio, time
 
-btn = digitalio.DigitalInOut(board.IO4)
+btn = digitalio.DigitalInOut(board.IO25)
 btn.switch_to_input(pull=digitalio.Pull.DOWN)
-relay = digitalio.DigitalInOut(board.IO5)
+relay = digitalio.DigitalInOut(board.IO23)
 relay.direction = digitalio.Direction.OUTPUT
 
 was = False
@@ -145,8 +158,8 @@ The brighter the room, the more pixels light up. ([Analog In](https://learn.adaf
 ```python
 import board, neopixel, analogio, time
 
-px = neopixel.NeoPixel(board.IO13, 4, brightness=0.2)
-ldr = analogio.AnalogIn(board.IO34)
+px = neopixel.NeoPixel(board.IO32, 4, brightness=0.2)
+ldr = analogio.AnalogIn(board.IO36)
 
 while True:
     n = ldr.value * 5 // 65536   # 0 to 4 pixels
@@ -164,8 +177,8 @@ The potentiometer sets the buzzer pitch. ([PWM](https://learn.adafruit.com/circu
 ```python
 import board, analogio, pwmio, time
 
-pot = analogio.AnalogIn(board.IO35)
-buzzer = pwmio.PWMOut(board.IO18, duty_cycle=2**15, variable_frequency=True)
+pot = analogio.AnalogIn(board.IO39)
+buzzer = pwmio.PWMOut(board.IO19, duty_cycle=2**15, variable_frequency=True)
 
 while True:
     buzzer.frequency = 200 + pot.value // 32   # about 200 to 2250 Hz
@@ -180,23 +193,17 @@ import board, busio, displayio, terminalio, time
 import fourwire, adafruit_ili9341, adafruit_dht
 from adafruit_display_text import label
 
-# Fill these in from the Matouch 3.2 schematic
-TFT_SCK = None
-TFT_MOSI = None
-TFT_MISO = None
-TFT_CS = None
-TFT_DC = None
-TFT_RST = None
+# TFT pins from the Matouch 3.2 v1.1 schematic. Reset is tied to the board reset.
 
 displayio.release_displays()
-spi = busio.SPI(clock=TFT_SCK, MOSI=TFT_MOSI, MISO=TFT_MISO)
-bus = fourwire.FourWire(spi, command=TFT_DC, chip_select=TFT_CS, reset=TFT_RST)
+spi = busio.SPI(clock=board.IO14, MOSI=board.IO13, MISO=board.IO12)
+bus = fourwire.FourWire(spi, command=board.IO33, chip_select=board.IO15, reset=None)
 display = adafruit_ili9341.ILI9341(bus, width=320, height=240)
 
 text = label.Label(terminalio.FONT, text="starting", x=10, y=30, scale=3)
 display.root_group = text
 
-dht = adafruit_dht.DHT11(board.IO15)
+dht = adafruit_dht.DHT11(board.IO18)
 
 while True:
     try:
@@ -215,12 +222,12 @@ Combine lessons 1 to 6. The pot sets the target temperature, the screen shows bo
 import board, neopixel, digitalio, analogio, pwmio, adafruit_dht, time
 # display setup: copy from lesson 6 (imports, TFT pins, display, text label)
 
-px = neopixel.NeoPixel(board.IO13, 4, brightness=0.2)
-relay = digitalio.DigitalInOut(board.IO5)
+px = neopixel.NeoPixel(board.IO32, 4, brightness=0.2)
+relay = digitalio.DigitalInOut(board.IO23)
 relay.direction = digitalio.Direction.OUTPUT
-pot = analogio.AnalogIn(board.IO35)
-buzzer = pwmio.PWMOut(board.IO18, duty_cycle=0, frequency=1000)
-dht = adafruit_dht.DHT11(board.IO15)
+pot = analogio.AnalogIn(board.IO39)
+buzzer = pwmio.PWMOut(board.IO19, duty_cycle=0, frequency=1000)
+dht = adafruit_dht.DHT11(board.IO18)
 
 while True:
     try:
@@ -235,11 +242,6 @@ while True:
         pass
     time.sleep(2)
 ```
-
-
-
-
-
 
 
 **Part 2 starter robot**
