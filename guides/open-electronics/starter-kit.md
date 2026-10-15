@@ -23,13 +23,13 @@ With the camera removed, its GPIOs are free. This map follows the [Grove-UEXT-3.
 
 | Part | GPIO | Shield port | J1 pin | Note |
 |---|---|---|---|---|
-| Crowtail RGB-LED (4 pixels) | 32 | J4 STICK | 6 | data pin |
-| Crowtail Button 2.0 | 25 | J9 BUTTON | 8 | digital input |
-| Crowtail Solid-State Relay 2.0 | 23 | J8 RELAY | 9 | digital output |
-| Crowtail Light Sensor 2.0 | 36 | J2 LIGHT | 3 | analogue input (input-only pin) |
-| Crowtail Rotary Angle Sensor 2.0 | 39 | J3 POT | 4 | analogue input (input-only pin) |
-| Crowtail Buzzer 2.0 | 19 | J7 BUZZER | 11 | PWM |
-| Crowtail Temp & Humidity 2.0 (DHT11) | 18 | J6 DHT11 | 12 | digital |
+| Crowtail RGB-LED (4 pixels) | 32 | STICK | 6 | data pin |
+| Crowtail Button 2.0 | 25 | BUTTON | 8 | digital input |
+| Crowtail Solid-State Relay 2.0 | 23 | RELAY | 9 | digital output |
+| Crowtail Light Sensor 2.0 | 36 | LIGHT | 3 | analogue input (input-only pin) |
+| Crowtail Rotary Angle Sensor 2.0 | 39 | POT | 4 | analogue input (input-only pin) |
+| Crowtail Buzzer 2.0 | 19 | BUZZER | 11 | PWM |
+| Crowtail Temp & Humidity 2.0 (DHT11) | 18 | DHT11 | 12 | digital |
 
 Each port carries one signal, 3.3V and GND. No port has 5V.
 
