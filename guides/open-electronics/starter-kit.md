@@ -33,20 +33,6 @@ With the camera removed, its GPIOs are free. This map follows the [Grove-UEXT-3.
 
 Each port carries one signal, 3.3V and GND. No port has 5V.
 
-**Used by the board, do not wire to:**
-
-| GPIO | Used for |
-|---|---|
-| 12, 13, 14 | SPI bus shared by the TFT and the SD card (MISO, MOSI, SCK) |
-| 15 | TFT chip select |
-| 33 | TFT data/command (LCD_RS) |
-| 4 | SD card chip select |
-| 26, 27 | I2C (SDA, SCL) for the touch controller, also on J1 |
-| 0 | touch interrupt, and a boot strapping pin |
-| 1, 3 | USB serial (TXD, RXD) |
-
-The TFT reset is tied to the board reset, so it has no GPIO. The backlight is always on. Use GPIO 32 to 39 for analogue parts, because ADC2 pins stop working when WiFi is on. In CircuitPython the pins are written `board.IO32` and so on. In MicroBlocks you use the plain GPIO number.
-
 **Safety:** use the relay with low-voltage loads only. No mains in the lessons.
 
 ---
